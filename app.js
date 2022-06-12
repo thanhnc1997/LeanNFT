@@ -3,7 +3,7 @@ const app = express();
 const compression = require('compression');
 const client_view = require('./render_client.js');
 
-app.use('/assets', express.static('assets'));
+// app.use('/assets', express.static('assets'));
 app.listen(process.env.PORT, () => console.log('Lean NFT service started!'));
 
 app.get('/*', (req, res, next) => {

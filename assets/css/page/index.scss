@@ -59,12 +59,11 @@
 				padding-left: 64px;
 			}
 			display: grid;
-			grid-template: auto / 42% 65%;
+			grid-template: auto / 40% 60%;
 		}
 		
 		.slide-wrapper {
 			width: 100%;
-			overflow: hidden;
 			.slick-slide {
 				display: flex;
 				flex-direction: column;
@@ -81,9 +80,19 @@
 			.slick-dots li button {
 				background: $light;
 				border: 1px solid #85D399;
+				border-radius: 50%;
 				&.active {
 					background: #85D399;
 				}
+				&::before {
+					content: '';
+					display: none;
+				}
+			}
+			
+			figure,
+			.image {
+				height: 100%;
 			}
 		}
 		

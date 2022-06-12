@@ -174,6 +174,8 @@ function home_page(params) {
 			dots: true,
 			arrows: true,
 			infinite: true,
+			autoplay: true,
+			autoplaySpeed: 1000,
 			speed: 300,
 			slidesToShow: 3,
 			slidesToScroll: 3
