@@ -13,6 +13,7 @@ import main_nav from './components/main_nav.js';
 //
 import home_page from './pages/home_page.js';
 import top_exclusive_page from './pages/top_exclusive.js';
+import detail_page from './pages/detail_page.js';
 
 let app = create_element('div');
 app.classList.add('app');
@@ -28,4 +29,8 @@ if (pathname == '' || pathname == '/') {
 
 if (pathname.includes('/top-exclusive')) {
 	app.appendChild(top_exclusive_page());
+}
+
+if (pathname.includes('/detail')) {
+	app.appendChild(detail_page());
 }

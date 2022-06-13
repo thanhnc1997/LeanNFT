@@ -175,7 +175,7 @@
 	}
 	.user-info {
 		box-shadow: inset 14px 14px 12px rgba(57, 129, 80, 0.1);
-		border-radius: 100px 0 0 100px;
+		border-radius: 100px 12px 12px 100px;
 		background: $grey4;
 		margin-bottom: 28px;
 		.ava {
@@ -194,6 +194,70 @@
 			span {
 				text-transform: uppercase;
 			}
+		}
+	}
+}
+
+.detail-page {
+	.main-content {
+		align-items: self-start;
+		margin-bottom: 42px;
+		.image {
+			padding-top: 100%;
+			border-radius: 12px;
+			background: $grey3;
+		}
+		.content {
+			h2 {
+				font-size: 24px;
+				margin-bottom: 22px;
+			}
+			p {
+				font-size: 20px;
+			}
+			.btn {
+				width: 100%;
+				margin: 24px 0 32px 0;
+				font-size: 20px;
+				svg {
+					margin: 0 10px;
+				}
+				b {
+					color: $dark;
+				}
+			}
+		}
+		.detail {
+			span,
+			b {
+				display: block;
+				font-size: 18px;
+			}
+			span {
+				text-transform: uppercase;
+			}
+		}
+		.description {
+			.detail {
+				margin-bottom: 24px;
+			}
+		}
+		.creator {
+			margin-bottom: 28px;
+			.ava {
+				width: 50px;
+				height: 50px;
+				background: $grey3;
+				margin-right: 12px;
+				border-radius: 50%;
+			}
+		}
+	}
+	.list-explore {
+		> h4 {
+			font-size: 36px;
+			color: #398150;
+			margin-bottom: 24px;
 		}
 	}
 }

@@ -2,8 +2,9 @@ import {
 	create_element,
 	render_icon
 } from '../functions.js';
+import form_search from '../components/form_search.js';
 
-function home_page(params) {
+function home_page() {
 	let template = create_element('div');
 	template.classList.add('home-page');
 	
@@ -13,10 +14,6 @@ function home_page(params) {
 		div.style.cssText = 'background-image: url(/assets/images/hero.png);';
 		div.innerHTML = `
 		<div class="container">
-			<form class="form">
-				${render_icon.search({width: 20})}
-				<input type="text" placeholder="Collection, item...">
-			</form>
 			<h1>
 				<span>NFT Marketplace</span>
 				<strong class="title">Discover Rare &amp; <br> Unique Digital Art</strong>
@@ -142,7 +139,7 @@ function home_page(params) {
 		div.classList.add('grid-row', 'three-items');
 		div.innerHTML = `
 		<figure class="card box-shadow hover-animation">
-			<a class="image" style="background-image: url(/assets/images/item_1.png)"></a>
+			<a href="/detail" class="image" style="background-image: url(/assets/images/item_1.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
 			<figcaption>
 				<p>
@@ -152,7 +149,7 @@ function home_page(params) {
 			</figcaption>
 		</figure>
 		<figure class="card box-shadow hover-animation">
-			<a class="image" style="background-image: url(/assets/images/item_2.png)"></a>
+			<a href="/detail" class="image" style="background-image: url(/assets/images/item_2.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
 			<figcaption>
 				<p>
@@ -172,6 +169,8 @@ function home_page(params) {
 	template.appendChild(top_explore());
 	template.querySelector('.top-explore .container').appendChild(nav_filter());
 	template.querySelector('.top-explore .container').appendChild(list_explore());
+	template.querySelector('.hero .container').insertBefore(form_search(), template.querySelector('.hero .container').childNodes[0]);
+	
 	$(document).ready(() => {
 		$('#slide').slick({
 			rows: 2,

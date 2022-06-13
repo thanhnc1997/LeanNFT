@@ -2,6 +2,7 @@ import {
 	create_element,
 	render_icon
 } from '../functions.js';
+import form_search from '../components/form_search.js';
 
 function top_exclusive_page() {
 	let template = create_element('div');
@@ -11,11 +12,8 @@ function top_exclusive_page() {
 	
 	function page_header() {
 		let div = create_element('div');
+		div.classList.add('page-header');
 		div.innerHTML = `
-		<form class="form">
-			${render_icon.search({width: 20})}
-			<input type="text" placeholder="Collection, item...">
-		</form>
 		<div class="hero-unit inset-shadow text-center">
 			<h2>City Night</h2>
 			<h4>Collection of 50 rare Motobike <span class="badge type-1"></span></h4>
@@ -49,6 +47,7 @@ function top_exclusive_page() {
 	
 	function page_body() {
 		let div = create_element('div');
+		div.classList.add('page-body');
 		div.innerHTML = `
 		<div class="user-info d-flex align-items-center">
 			<span class="ava"></span>
@@ -67,7 +66,7 @@ function top_exclusive_page() {
 		div.classList.add('grid-row', 'three-items');
 		div.innerHTML = `
 		<figure class="card box-shadow hover-animation">
-			<a class="image" style="background-image: url(/assets/images/item_1.png)"></a>
+			<a href="/detail" class="image" style="background-image: url(/assets/images/item_1.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
 			<figcaption>
 				<p>
@@ -77,7 +76,7 @@ function top_exclusive_page() {
 			</figcaption>
 		</figure>
 		<figure class="card box-shadow hover-animation">
-			<a class="image" style="background-image: url(/assets/images/item_2.png)"></a>
+			<a href="/detail" class="image" style="background-image: url(/assets/images/item_2.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
 			<figcaption>
 				<p>
@@ -91,6 +90,7 @@ function top_exclusive_page() {
 		return div;
 	}
 	
+	template_inner.appendChild(form_search());
 	template_inner.appendChild(page_header());
 	template_inner.appendChild(page_body());
 	template_inner.appendChild(list_explore());
