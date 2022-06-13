@@ -7,15 +7,15 @@ function main_nav(params) {
 	let nav = create_element('nav');
 	nav.classList.add('main-nav');
 	nav.innerHTML = `
-	<span class="nav-item">
-		<a href="#" class="nav-link">
-			<span class="icon">${render_icon.home({width: 18})}</span>
+	<span class="nav-item active">
+		<a href="/" class="nav-link">
+			<span class="icon">${render_icon.home({width: 20})}</span>
 			<span class="text">Home</span>
 		</a>
 	</span>
 	<span class="nav-item">
 		<a href="#" class="nav-link">
-			<span class="icon">${render_icon.package({width: 18})}</span>
+			<span class="icon">${render_icon.package({width: 20})}</span>
 			<span class="text">NFT Launchpad</span>
 		</a>
 	</span>

@@ -13,7 +13,7 @@ function home_page(params) {
 		div.style.cssText = 'background-image: url(/assets/images/hero.png);';
 		div.innerHTML = `
 		<div class="container">
-			<form>
+			<form class="form">
 				${render_icon.search({width: 20})}
 				<input type="text" placeholder="Collection, item...">
 			</form>
@@ -107,12 +107,12 @@ function home_page(params) {
 		for(let i = 0; i <= 8; i++) {
 			list += `
 			<figure class="slide-item">
-				<div class="image" style="background-image: url(/assets/images/slide_${i}.png)">
+				<a href="/top-exclusive" class="image" style="background-image: url(/assets/images/slide_${i}.png)">
 					<figcaption>
 						<p>City Night</p>
 						<span>kaysinauction</span>
 					</figcaption>
-				</div>
+				</a>
 			</figure>
 			`;
 		}
@@ -120,12 +120,12 @@ function home_page(params) {
 		div.classList.add('grid-row');
 		div.innerHTML = `
 		<figure class="first">
-			<div class="image" style="background-image: url(/assets/images/city_night.png)">
+			<a href="/top-exclusive" class="image" style="background-image: url(/assets/images/city_night.png)">
 				<figcaption>
 					<p>City Night</p>
 					<span>kaysinauction</span>
 				</figcaption>
-			</div>
+			</a>
 		</figure>
 		<div class="slide-wrapper">
 			<div id="slide">
@@ -141,22 +141,26 @@ function home_page(params) {
 		let div = create_element('div');
 		div.classList.add('grid-row', 'three-items');
 		div.innerHTML = `
-		<div class="card">
-			<div class="image" style="background-image: url(/assets/images/item_1.png)"></div>
+		<figure class="card box-shadow hover-animation">
+			<a class="image" style="background-image: url(/assets/images/item_1.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
-			<p>
-				${render_icon.btc()}
-				<span class="price">0.5 BNB</span>
-			</p>
-		</div>
-		<div class="card">
-			<div class="image" style="background-image: url(/assets/images/item_2.png)"></div>
+			<figcaption>
+				<p>
+					${render_icon.btc()}
+					<span class="price">0.5 BNB</span>
+				</p>
+			</figcaption>
+		</figure>
+		<figure class="card box-shadow hover-animation">
+			<a class="image" style="background-image: url(/assets/images/item_2.png)"></a>
 			<h4>Sam's Basketball Journey</h4>
-			<p>
-				${render_icon.btc()}
-				<span class="price">0.5 BNB</span>
-			</p>
-		</div>
+			<figcaption>
+				<p>
+					${render_icon.btc()}
+					<span class="price">0.5 BNB</span>
+				</p>
+			</figcaption>
+		</figure>
 		`;
 		
 		return div;
@@ -172,7 +176,7 @@ function home_page(params) {
 		$('#slide').slick({
 			rows: 2,
 			dots: true,
-			arrows: true,
+			arrows: false,
 			infinite: true,
 			autoplay: true,
 			autoplaySpeed: 2000,
