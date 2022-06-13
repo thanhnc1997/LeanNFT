@@ -4,10 +4,11 @@ import {
 } from '../functions.js';
 
 function main_nav(params) {
+	let pathname = location.pathname;
 	let nav = create_element('nav');
 	nav.classList.add('main-nav');
 	nav.innerHTML = `
-	<span class="nav-item active">
+	<span class="nav-item ${pathname == '' || pathname == '/' ? 'active' : ''}">
 		<a href="/" class="nav-link">
 			<span class="icon">${render_icon.home({width: 20})}</span>
 			<span class="text">Home</span>
