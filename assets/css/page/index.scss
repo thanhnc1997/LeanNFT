@@ -51,6 +51,7 @@
 	
 	.top-exclusive {
 		.grid-row {
+			padding-bottom: 40px;
 			overflow: hidden;
 			@media (min-width: 1024px) {
 				padding-left: 46px;
@@ -76,17 +77,25 @@
 				margin-bottom: 0;
 				height: 100%;
 			}
-			
-			.slick-dots li button {
-				background: $light;
-				border: 1px solid #85D399;
-				border-radius: 50%;
-				&.active {
-					background: #85D399;
-				}
-				&::before {
-					content: '';
-					display: none;
+			.slick-dots {
+				bottom: -34px;
+				li {
+					button {
+						background: $light;
+						border: 2px solid #398150;
+						border-radius: 50%;
+						width: 12px;
+						height: 12px;
+						&::before {
+							content: '';
+							display: none;
+						}
+					}
+					&.slick-active {
+						button {
+							background: #85D399;
+						}
+					}
 				}
 			}
 			

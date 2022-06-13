@@ -276,6 +276,7 @@ img {
   .home-page .hero .btn-light {
     margin-right: 34px; }
 .home-page .top-exclusive .grid-row {
+  padding-bottom: 40px;
   overflow: hidden;
   display: grid;
   grid-template: auto / 40% 60%; }
@@ -297,15 +298,19 @@ img {
   .home-page .top-exclusive .slide-wrapper .slick-track {
     margin-bottom: 0;
     height: 100%; }
-  .home-page .top-exclusive .slide-wrapper .slick-dots li button {
-    background: #fff;
-    border: 1px solid #85D399;
-    border-radius: 50%; }
-    .home-page .top-exclusive .slide-wrapper .slick-dots li button.active {
+  .home-page .top-exclusive .slide-wrapper .slick-dots {
+    bottom: -34px; }
+    .home-page .top-exclusive .slide-wrapper .slick-dots li button {
+      background: #fff;
+      border: 2px solid #398150;
+      border-radius: 50%;
+      width: 12px;
+      height: 12px; }
+      .home-page .top-exclusive .slide-wrapper .slick-dots li button::before {
+        content: '';
+        display: none; }
+    .home-page .top-exclusive .slide-wrapper .slick-dots li.slick-active button {
       background: #85D399; }
-    .home-page .top-exclusive .slide-wrapper .slick-dots li button::before {
-      content: '';
-      display: none; }
   .home-page .top-exclusive .slide-wrapper figure,
   .home-page .top-exclusive .slide-wrapper .image {
     height: 100%; }

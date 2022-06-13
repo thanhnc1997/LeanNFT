@@ -175,7 +175,7 @@ function home_page(params) {
 			arrows: true,
 			infinite: true,
 			autoplay: true,
-			autoplaySpeed: 1000,
+			autoplaySpeed: 2000,
 			speed: 300,
 			slidesToShow: 3,
 			slidesToScroll: 3
