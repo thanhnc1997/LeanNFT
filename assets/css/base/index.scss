@@ -86,10 +86,7 @@ img {
 .container {
 	padding: 15px;
 	@media (min-width: 1024px) {
-		padding: 46px;
-	}
-	@media (min-width: 1200px) {
-		padding: 64px;
+		padding: 46px 64px;
 	}
 }
 

@@ -51,16 +51,12 @@
 	
 	.top-exclusive {
 		.grid-row {
-			padding-bottom: 40px;
 			overflow: hidden;
-			@media (min-width: 1024px) {
-				padding-left: 46px;
-			}
-			@media (min-width: 1200px) {
-				padding-left: 64px;
-			}
 			display: grid;
 			grid-template: auto / 40% 60%;
+			@media (min-width: 1024px) {
+				padding-left: 64px;
+			}
 		}
 		
 		.slide-wrapper {
@@ -155,6 +151,9 @@
 		margin-bottom: 36px;
 		display: flex;
 		.nav-item {
+			display: flex;
+			align-items: center;
+			justify-content: center;
 			background: $light;
 			margin-right: 12px;
 			height: 36px;

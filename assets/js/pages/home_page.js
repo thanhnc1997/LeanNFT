@@ -14,7 +14,7 @@ function home_page(params) {
 		div.innerHTML = `
 		<div class="container">
 			<form>
-				${render_icon.search()}
+				${render_icon.search({width: 20})}
 				<input type="text" placeholder="Collection, item...">
 			</form>
 			<h1>
@@ -66,28 +66,28 @@ function home_page(params) {
 		div.classList.add('nav-filter');
 		div.innerHTML = `
 		<span class="nav-item">
-			${render_icon.filter()}
+			${render_icon.filter({width: 20})}
 		</span>
 		<span class="nav-item">
-			${render_icon.paint()} All
+			${render_icon.paint({width: 18})} All
 		</span>
 		<span class="nav-item">
-			${render_icon.collections()} Colelctions
+			${render_icon.collections({width: 16})} Colelctions
 		</span>
 		<span class="nav-item">
-			${render_icon.autions()} Autions
+			${render_icon.autions({width: 8})} Autions
 		</span>
 		<span class="nav-item">
-			${render_icon.game()} Game
+			${render_icon.game({width: 20})} Game
 		</span>
 		<span class="nav-item">
-			${render_icon.atom()} Art
+			${render_icon.atom({width: 16})} Art
 		</span>
 		<span class="nav-item">
-			${render_icon.photo()} Photo
+			${render_icon.photo({width: 16})} Photo
 		</span>
 		<span class="nav-item">
-			${render_icon.music()} Music
+			${render_icon.music({width: 16})} Music
 		</span>
 		`;
 		div.querySelectorAll('.nav-item').forEach(item => {
