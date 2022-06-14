@@ -66,6 +66,9 @@ img {
 .title {
   font-family: 'Khand', sans-serif; }
 
+.overflow-hidden {
+  overflow: hidden; }
+
 .container {
   padding: 15px; }
   @media (min-width: 1024px) {
@@ -92,8 +95,15 @@ img {
     .btn.btn-gradient:hover {
       background-image: linear-gradient(to right, #94BD81 10%, #6DA97B);
       border-color: #6DA97B; }
+  .btn.btn-secondary {
+    background: #F5FEF1;
+    color: #333;
+    border: 1px solid #B4EAA1; }
+    .btn.btn-secondary:hover {
+      background: #B4EAA1; }
   .btn.btn-block {
-    display: block; }
+    display: block;
+    width: 100%; }
 
 .d-flex {
   display: flex; }
@@ -106,6 +116,9 @@ img {
 
 .justify-content-around {
   justify-content: space-around; }
+
+.justify-content-between {
+  justify-content: space-between; }
 
 .overlay {
   position: fixed;
@@ -324,6 +337,32 @@ img {
     .gradient-box .item span {
       opacity: .8;
       text-transform: uppercase; }
+
+.modal .modal-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  height: auto;
+  width: calc(100% - 20px);
+  z-index: 1111; }
+  .modal .modal-dialog.no-footer .modal-footer {
+    display: none; }
+  .modal .modal-dialog.modal-sm {
+    max-width: 336px; }
+.modal .modal-header,
+.modal .modal-body,
+.modal .modal-footer {
+  padding: 16px; }
+.modal .modal-header {
+  display: flex;
+  justify-content: space-between; }
+  .modal .modal-header .close {
+    margin-left: auto;
+    cursor: pointer; }
 
 .home-page .hero {
   background: no-repeat top right;

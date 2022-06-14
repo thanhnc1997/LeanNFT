@@ -83,6 +83,10 @@ img {
 	font-family: 'Khand', sans-serif;
 }
 
+.overflow-hidden {
+	overflow: hidden;
+}
+
 .container {
 	padding: 15px;
 	@media (min-width: 1024px) {
@@ -114,8 +118,17 @@ img {
 			border-color: #6DA97B;
 		}
 	}
+	&.btn-secondary {
+		background: #F5FEF1;
+		color: $dark;
+		border: 1px solid #B4EAA1;
+		&:hover {
+			background: #B4EAA1;
+		}
+	}
 	&.btn-block {
 		display: block;
+		width: 100%;
 	}
 }
 
@@ -133,6 +146,10 @@ img {
 
 .justify-content-around {
 	justify-content: space-around;
+}
+
+.justify-content-between {
+	justify-content: space-between;
 }
 
 .overlay {
@@ -406,6 +423,44 @@ img {
 		span {
 			opacity: .8;
 			text-transform: uppercase;
+		}
+	}
+}
+
+.modal {
+	.modal-dialog {
+		position: fixed;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: $light;
+		border-radius: 12px;
+		overflow: hidden;
+		height: auto;
+		width: calc(100% - 20px);
+		z-index: 1111;
+		&.no-footer {
+			.modal-footer {
+				display: none;
+			}
+		}
+		&.modal-sm {
+			max-width: 336px;
+		}
+	}
+	
+	.modal-header,
+	.modal-body,
+	.modal-footer {
+		padding: 16px;
+	}
+	
+	.modal-header {
+		display: flex;
+		justify-content: space-between;
+		.close {
+			margin-left: auto;
+			cursor: pointer;
 		}
 	}
 }
