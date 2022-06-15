@@ -9,15 +9,16 @@ function home_page() {
 	let modal_config = {
 		id: 'connect-wallet',
 		css: `
+		#connect-wallet .modal-body {
+			padding: 16px 26px 26px;
+		}
 		#connect-wallet .modal-body h4 {
 			font-size: 20px;
 			margin-bottom: 16px;
 		}
-		#connect-wallet .modal-body {
-			padding: 16px 26px 26px;
-		}
 		#connect-wallet .modal-body p {
 			margin-bottom: 24px;
+			color: #ababab;
 		}
 		#connect-wallet .modal-body .btn {
 			width: 100%;
@@ -32,6 +33,14 @@ function home_page() {
 			<span>Metamask</span>${render_icon.metamask({width: 26})}
 		</button>
 		`,
+		error_content: `
+		<p class="text-center">${render_icon.metamask({width: 48})}</p>
+		<h4 class="text-center">Metamask not found</h4>
+		<p class="text-center">Don't have Metamask wallet?</p>
+		<a href="https://metamask.io/download/" target="_blank" class="w-100 link d-flex align-items-center justify-content-center">
+			Download Metamask ${render_icon.download({width: 20})}
+		</a>
+		`,
 		callback() {
 			let modal = document.querySelector('#' + this.id);
 			modal.querySelector('[data-wallet="metamask"]').addEventListener('click', (e) => {
@@ -41,7 +50,7 @@ function home_page() {
 					document.body.classList.remove('overflow-hidden');
 				}
 				else {
-					alert('MetaMask is uninstalled!');
+					modal.querySelector('.modal-body').innerHTML = this.error_content;
 				}
 			});
 		}
