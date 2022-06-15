@@ -15,6 +15,7 @@ function page_header(params) {
 	`;
 	let modal_config = {
 		id: 'connect-wallet',
+		type: 'normal',
 		css: `
 		#connect-wallet .modal-body {
 			padding: 16px 26px 26px;
@@ -33,6 +34,7 @@ function page_header(params) {
 		}
 		`,
 		modal_class: ['modal-sm', 'no-footer'],
+		type_class: [],
 		modal_content: `
 		<h4 class="text-center">Connect to a Wallet</h4>
 		<p class="text-center">Please connect with one of our available wallet providers to continue</p>

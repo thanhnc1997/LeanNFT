@@ -27,9 +27,16 @@ function modal(params = {}) {
 	let template_inner = create_element('div');
 	template_inner.classList.add('modal-dialog');
 	template_inner.setAttribute('id', params.id);
-	params.modal_class.map(e => {
-		template_inner.classList.add(e);
-	});
+	if (params.type == 'normal') {
+		params.modal_class.map(e => {
+			template_inner.classList.add(e);
+		});
+	}
+	if (params.type == 'notification') {
+		params.type_class.map(e => {
+			template_inner.classList.add(e);
+		});
+	}
 	
 	function modal_header() {
 		let div = create_element('div');
