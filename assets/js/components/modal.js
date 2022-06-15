@@ -6,8 +6,9 @@ import {
 
 function modal(params = {}) {
 	document.body.classList.add('overflow-hidden');
-	document.head.appendChild(params.style_tag);
-	params.style_tag.innerHTML = params.css;
+	let style_tag = create_element('style');
+	style_tag.innerHTML = params.css;
+	document.head.appendChild(style_tag);
 	if (!params.modal_size) params.modal_size = '';
 	if (!params.modal_content) params.modal_content = '';
 	function remove_modal() {

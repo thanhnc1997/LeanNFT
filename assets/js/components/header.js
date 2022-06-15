@@ -15,7 +15,6 @@ function page_header(params) {
 	`;
 	let modal_config = {
 		id: 'connect-wallet',
-		style_tag: create_element('style'),
 		css: `
 		#connect-wallet .modal-body h4 {
 			font-size: 20px;
@@ -43,7 +42,14 @@ function page_header(params) {
 		callback() {
 			let modal = document.querySelector('#' + this.id);
 			modal.querySelector('[data-wallet="metamask"]').addEventListener('click', (e) => {
-				console.log('Welcome to Metamask :3');
+				if (typeof window.ethereum !== 'undefined') {
+					ethereum.request({ method: 'eth_requestAccounts' });
+					modal.remove();
+					document.body.classList.remove('overflow-hidden');
+				}
+				else {
+					alert('MetaMask is uninstalled!');
+				}
 			});
 		}
 	}
