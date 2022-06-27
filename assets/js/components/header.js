@@ -1,6 +1,9 @@
 import {
 	create_element,
-	render_icon
+	render_icon,
+	change_state_button_metamask,
+	init_metamask_web3,
+	toast,
 } from '../functions.js';
 import modal from './modal.js'; 
 
@@ -12,6 +15,7 @@ function page_header(params) {
 		<img src="/assets/images/logo.png" alt="LeanNFT">
 	</a>
 	<button class="btn btn-gradient" type="button">Connect Wallet</button>
+	<span class="hamburger">${render_icon.hamburger({width: 38})}</span>
 	`;
 	let modal_config = {
 		id: 'connect-wallet',
@@ -52,11 +56,18 @@ function page_header(params) {
 		`,
 		callback() {
 			let modal = document.querySelector('#' + this.id);
-			modal.querySelector('[data-wallet="metamask"]').addEventListener('click', (e) => {
+			modal.querySelector('[data-wallet="metamask"]').addEventListener('click', async (e) => {
 				if (typeof window.ethereum !== 'undefined') {
-					ethereum.request({ method: 'eth_requestAccounts' });
+					await init_metamask_web3();
 					modal.remove();
+					document.querySelector('.modal').remove();
 					document.body.classList.remove('overflow-hidden');
+					try {
+						let accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+						change_state_button_metamask(accounts[0]);
+					} catch (e) {
+						toast(e.message)
+					}
 				}
 				else {
 					modal.querySelector('.modal-body').innerHTML = this.error_content;
@@ -68,6 +79,11 @@ function page_header(params) {
 	div.querySelector('.btn').addEventListener('click', (e) => {
 		document.querySelector('main').appendChild(modal(modal_config));
 		modal_config.callback();
+	});
+	
+	div.querySelector('.hamburger').addEventListener('click', () => {
+		document.querySelector('.main-nav').classList.add('show');
+		document.body.classList.add('overflow-hidden')
 	});
 	
 	return div;

@@ -17,7 +17,7 @@ function top_exclusive_page() {
 		<div class="hero-unit inset-shadow text-center">
 			<h2>City Night</h2>
 			<h4>Collection of 50 rare Motobike <span class="badge type-1"></span></h4>
-			<div class="gradient-box d-flex align-items-center justify-content-around" style="margin-bottom: 38px;">
+			<div class="gradient-box grid-row four-items align-items-center" style="margin-bottom: 38px;">
 				<p class="item">
 					<b>50</b>
 					<span>Minted</span>

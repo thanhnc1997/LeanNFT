@@ -49,6 +49,7 @@ function home_page() {
 				if (typeof window.ethereum !== 'undefined') {
 					ethereum.request({ method: 'eth_requestAccounts' });
 					modal.remove();
+					document.querySelector('.modal').remove();
 					document.body.classList.remove('overflow-hidden');
 				}
 				else {
@@ -64,7 +65,6 @@ function home_page() {
 	function hero_section() {
 		let div = create_element('section');
 		div.classList.add('hero');
-		div.style.cssText = 'background-image: url(/assets/images/hero.png);';
 		div.innerHTML = `
 		<div class="container">
 			<h1>
@@ -239,7 +239,35 @@ function home_page() {
 			autoplaySpeed: 2000,
 			speed: 300,
 			slidesToShow: 3,
-			slidesToScroll: 3
+			slidesToScroll: 3,
+			responsive: [
+				{
+					breakpoint: 1024,
+					settings: {
+						slidesToShow: 3,
+						slidesToScroll: 3,
+						infinite: true,
+						dots: true
+					}
+				},
+				{
+					breakpoint: 600,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				},
+				{
+					breakpoint: 480,
+					settings: {
+						slidesToShow: 2,
+						slidesToScroll: 2
+					}
+				}
+				// You can unslick at a given breakpoint now by adding:
+				// settings: "unslick"
+				// instead of a settings object
+			]
 		})
 	});
 	

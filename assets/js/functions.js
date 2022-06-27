@@ -9,6 +9,17 @@ function remove_element(e) {
   }
 }
 
+function toast(message) {
+  let div = create_element('div');
+  div.classList.add('toast');
+  div.innerHTML = message;
+  document.body.appendChild(div);
+
+  setTimeout(() => {
+    remove_element('.toast');
+  }, 5000);
+}
+
 let render_icon = {
 	home(options) {
 		return `
@@ -186,11 +197,108 @@ let render_icon = {
 		<path d="M10.4927 12.7368C10.6758 12.7368 10.8369 12.6782 11.0054 12.5098L13.4663 10.1367C13.5908 10.0122 13.6567 9.88037 13.6567 9.70459C13.6567 9.36768 13.3857 9.11865 13.0562 9.11865C12.8877 9.11865 12.7192 9.19189 12.6021 9.32373L11.5693 10.415L11.1006 10.9497L11.1738 9.86572V2.27051C11.1738 1.91162 10.8662 1.604 10.4927 1.604C10.1265 1.604 9.81885 1.91162 9.81885 2.27051V9.86572L9.89209 10.957L9.41602 10.415L8.39062 9.32373C8.27344 9.19189 8.09766 9.11865 7.9292 9.11865C7.59961 9.11865 7.32861 9.36768 7.32861 9.70459C7.32861 9.88037 7.40186 10.0122 7.52637 10.1367L9.9873 12.5098C10.1558 12.6782 10.3169 12.7368 10.4927 12.7368ZM6.28125 17.4829H14.7114C16.2935 17.4829 17.1138 16.6699 17.1138 15.1099V7.89551C17.1138 6.33545 16.2935 5.52246 14.7114 5.52246H12.7266V6.95801H14.6235C15.2974 6.95801 15.6782 7.30957 15.6782 8.02002V14.9854C15.6782 15.6958 15.2974 16.0474 14.6235 16.0474H6.36914C5.68799 16.0474 5.31445 15.6958 5.31445 14.9854V8.02002C5.31445 7.30957 5.68799 6.95801 6.36914 6.95801H8.28076V5.52246H6.28125C4.69922 5.52246 3.87891 6.33545 3.87891 7.89551V15.1099C3.87891 16.6699 4.69922 17.4829 6.28125 17.4829Z" fill="#2B8EFF"/>
 		</svg>
 		`;
+	},
+	hamburger(options) {
+		return `
+		<svg width="${options.width}" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--ic" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="#85D399" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>
+		`;
 	}
 }
+//
+// Metamask function
+//
+const shorten_user_address = (address) => {
+	return `<span style="margin-right: 12px;">${address.substring(0, 5)}...${address.substring(address.length - 4)}</span> ${render_icon.metamask({ width: 18 })}`;
+}
+const change_state_button_metamask = (address, return_only_name) => {
+	if (!address) {
+		if (return_only_name) return 'Connect Wallet';
+		window.location.reload();
+		return;
+	};
+	localStorage.setItem('id', address);
+	if (return_only_name) return shorten_user_address(address);
+	document.querySelector('.header .btn').innerHTML = shorten_user_address(address);
+}
+
+const handle_metamask_events = () => {
+	window.ethereum.on('accountsChanged', (accounts) => {
+		console.log('account change', accounts);
+		change_state_button_window.ethereum(accounts[0]);
+	});
+
+	window.ethereum.on('chainChanged', (chainId) => {
+		console.log('Network change')
+		window.location.reload();
+	});
+
+	window.ethereum.on('disconnect', handler => {
+		console.log('Disconnect metamask', handler)
+	});
+}
+
+const handle_metamask_network = async ({ chainId, name, symbol, explorer }) => {
+	const current_network = `0x${parseInt(window.ethereum.networkVersion).toString(16)}`;
+	if (current_network !== chainId) {
+		console.log('Suggess change network');
+		try {
+			await window.ethereum.request({
+				method: 'wallet_switchEthereumChain',
+				params: [{ chainId: chainId }]
+			});
+		} catch (err) {
+			if (err.code === 4902) {
+				await window.ethereum.request({
+					method: 'wallet_addEthereumChain',
+					params: [
+						{
+							chainName: name,
+							chainId: chainId,
+							nativeCurrency: { name: symbol, decimals: 18, symbol: symbol },
+							rpcUrls: [explorer]
+						}
+					]
+				});
+			}
+		}
+	}
+	try {
+		let accounts = await window.ethereum.request({ method: 'eth_accounts' });
+		if (!accounts.length) {
+			localStorage.removeItem('id');
+			change_state_button_metamask('', true);
+		} else {
+			if (accounts[0] != localStorage.getItem('id')) {
+				localStorage.setItem('id', accounts[0])
+			}
+		}
+	} catch (e) {
+		toast(e.message);
+	}
+	
+}
+
+const init_metamask_web3 = async () => {
+	window.web3 = await Moralis.enableWeb3();
+	window.ethers = Moralis.web3Library;
+	await handle_metamask_network(window.supported_network || {});
+	handle_metamask_events();
+	return true;
+}
+
+
+(async () => {
+	handle_metamask_network(window.supported_network || {});
+	const serverUrl = 'https://uke6csg1zn8x.usemoralis.com:2053/server';
+	const appId = '5xvcLzM5kb5XTxM8lWwB8hyO68p3UQMhGpGYQ0A9';
+	Moralis.start({ serverUrl, appId });
+})();
 
 export {
 	create_element,
 	remove_element,
-	render_icon
+	render_icon,
+	toast,
+	change_state_button_metamask,
+	init_metamask_web3
 }

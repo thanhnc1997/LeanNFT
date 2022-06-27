@@ -2,7 +2,15 @@
 	.hero {
 		background: no-repeat top right;
 		background-size: cover;
-		padding-bottom: 200px;
+		padding-bottom: 80px;
+		@media (min-width: 768px) {
+			background-image: url(/assets/images/hero.png);
+			background-size: 100%;
+		}
+		@media (min-width: 1140px) {
+			background-size: cover;
+			padding-bottom: 200px;
+		}
 		h1 {
 			margin-bottom: 16px;
 			span {
@@ -28,12 +36,19 @@
 	}
 	
 	.top-exclusive {
+		padding: 0 12px 25px;
+		@media (min-width: 768px) {
+			padding: 0 12px 40px;
+		}
 		.grid-row {
 			padding-bottom: 40px;
 			overflow: hidden;
-			display: grid;
+			display: block;
 			grid-gap: 22px;
-			grid-template: auto / calc(40% - 8px) calc(60% + 8px);
+			@media (min-width: 768px) {
+				display: grid;
+				grid-template: auto / calc(40% - 8px) calc(60% + 8px);
+			}
 			@media (min-width: 1024px) {
 				padding-left: 64px;
 			}
@@ -46,12 +61,24 @@
 				flex-direction: column;
 				padding: 0 10px;
 				justify-content: space-between;
+				> div {
+					margin-bottom: 15px;
+					@media (min-width: 768px) {
+						margin-bottom: 0;
+					}
+				}
 			}
 			.slick-slider,
 			.slick-list,
 			.slick-track {
 				margin-bottom: 0;
 				height: 100%;
+			}
+			.slick-list {
+				margin: 0 -10px;
+				@media (min-width: 768px) {
+					margin: 0
+				}
 			}
 			.slick-dots {
 				bottom: -34px;
@@ -87,14 +114,21 @@
 				display: block;
 			}
 			&.first {
+				margin-bottom: 15px;
+				@media (min-width: 768px) {
+					margin-bottom: 0;
+				}
 				p {
-					font-size: 36px;
+					font-size: 18px;
+					@media (min-width: 1024p) {
+						font-size: 36px;
+					}
 				}
 				span {
-					font-size: 24px;
-				}
-				.image {
-					height: 100%;
+					font-size: 14px;
+					@media (min-width: 1024p) {
+						font-size: 24px;
+					}
 				}
 			}
 			figcaption {
@@ -131,8 +165,10 @@
 	}
 	
 	.nav-filter {
-		margin-bottom: 36px;
+		padding-bottom: 16px;
+		margin-bottom: 20px;
 		display: flex;
+		overflow: auto;
 		.nav-item {
 			display: flex;
 			align-items: center;
@@ -159,7 +195,7 @@
 				}
 			}
 			&:first-child {
-				width: 36px;
+				flex: 0 0 36px;
 				padding: 8px 0;
 				svg {
 					margin: 0;
@@ -171,7 +207,10 @@
 
 .top-exclusive-page {
 	.hero-unit {
-		margin-bottom: 64px;
+		margin-bottom: 24px;
+		@media (min-width: 768px) {
+			margin-bottom: 64px;
+		}
 	}
 	.user-info {
 		box-shadow: inset 14px 14px 12px rgba(57, 129, 80, 0.1);
@@ -180,16 +219,22 @@
 		margin-bottom: 28px;
 		.ava {
 			display: inline-block;
-			width: 120px;
-			height: 120px;
+			width: 80px;
+			height: 80px;
 			border-radius: 50%;
 			background: $grey3;
 			margin-right: 24px;
+			@media (min-width: 768px) {
+				width: 120px;
+				height: 120px;
+			}
 		}
 		p {
 			span, b {
 				display: block;
-				font-size: 20px;
+				@media (min-width: 768px) {
+					font-size: 20px;
+				}
 			}
 			span {
 				text-transform: uppercase;
@@ -201,7 +246,10 @@
 .detail-page {
 	.main-content {
 		align-items: self-start;
-		margin-bottom: 42px;
+		margin-bottom: 24px;
+		@media (min-width: 768px) {
+			margin-bottom: 42px;
+		}
 		.image {
 			padding-top: 100%;
 			border-radius: 12px;
@@ -209,16 +257,26 @@
 		}
 		.content {
 			h2 {
-				font-size: 24px;
-				margin-bottom: 22px;
+				font-size: 18px;
+				margin-bottom: 16px;
+				@media (min-width: 768px) {
+					font-size: 24px;
+					margin-bottom: 22px;
+				}
 			}
 			p {
-				font-size: 20px;
+				text-align: justify;
+				@media (min-width: 768px) {
+					font-size: 20px;
+				}
 			}
 			.btn {
 				width: 100%;
 				margin: 24px 0 32px 0;
-				font-size: 20px;
+				font-size: 16px;
+				@media (min-width: 768px) {
+					font-size: 20px;
+				}
 				svg {
 					margin: 0 10px;
 				}
@@ -231,7 +289,9 @@
 			span,
 			b {
 				display: block;
-				font-size: 18px;
+				@media (min-width: 768px) {
+					font-size: 18px;
+				}
 			}
 			span {
 				text-transform: uppercase;
@@ -239,7 +299,10 @@
 		}
 		.description {
 			.detail {
-				margin-bottom: 24px;
+				margin-bottom: 16px;
+				@media (min-width: 768px) {
+					margin-bottom: 24px;
+				}
 			}
 		}
 		.creator {
@@ -255,9 +318,12 @@
 	}
 	.list-explore {
 		> h4 {
-			font-size: 36px;
+			font-size: 26px;
 			color: #398150;
 			margin-bottom: 24px;
+			@media (min-width: 768px) {
+				font-size: 36px;
+			}
 		}
 	}
 }

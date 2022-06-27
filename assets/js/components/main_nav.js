@@ -8,6 +8,7 @@ function main_nav(params) {
 	let nav = create_element('nav');
 	nav.classList.add('main-nav');
 	nav.innerHTML = `
+	<span class="close d-block text-right">${render_icon.times({width: 28})}</span>
 	<span class="nav-item ${pathname == '' || pathname == '/' ? 'active' : ''}">
 		<a href="/" class="nav-link">
 			<span class="icon">${render_icon.home({width: 20})}</span>
@@ -34,6 +35,11 @@ function main_nav(params) {
 	</span>
 	<div class="image"><img src="/assets/images/image_1.png"></div>
 	`;	
+	
+	nav.querySelector('.close svg').addEventListener('click', (e) => {
+		nav.classList.remove('show');
+		document.body.classList.remove('overflow-hidden');
+	});
 	
 	return nav;
 }
